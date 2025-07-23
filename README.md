@@ -1,10 +1,14 @@
 # Misclassification Estimates Based on CHAMPS Data
 
-Estimates of misclassification matrices using the modeling framework from [Pramanik et al. (2025)](https://projecteuclid.org/journals/annals-of-applied-statistics/volume-19/issue-2/Modeling-structure-and-country-specific-heterogeneity-in-misclassification-matrices-of/10.1214/24-AOAS2006.full) and the limited paired MITS-VA data from the Child Health and Mortality Prevention Surveillance ([CHAMPS](https://champshealth.org/)) project.
+Estimates of misclassification matrices using the modeling framework from [Pramanik et al. (2025)](https://projecteuclid.org/journals/annals-of-applied-statistics/volume-19/issue-2/Modeling-structure-and-country-specific-heterogeneity-in-misclassification-matrices-of/10.1214/24-AOAS2006.full) and the limited paired MITS-VA data from the Child Health and Mortality Prevention Surveillance ([CHAMPS](https://champshealth.org/)) project. These are the same misclassification estimates used in the `vacalibration` R package on CRAN. This repository contains the posterior samples, whereas `Mmat_champs` in `vacalibration` contains the posterior summaries. Posterior means and Dirichlet approximations are identical.
 
 ## Credit
 
-Sandipan Pramanik and Abhirup Datta developed this repository and uploaded the estimates included here.
+Sandipan Pramanik, Emily Wilson, Jacob Fiksel, Brian Gilbert, and Abhirup Datta developed this repository.
+
+Maintainer: Sandipan Pramanik ([sandy.pramanik@gmail.com](sandy.pramanik@gmail.com))
+
+Future updates of misclassification estimates will be released here.
 
 ## Data Format
 
