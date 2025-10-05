@@ -1,10 +1,11 @@
 
 
-## code to prepare inventory of misclassification estimates and public COMSA-Mozambique data goes here
-
+## code to prepare inventory of CCVA misclassification matrix estimates
+rm(list = ls())
 type = 'single'
 
-# data or output paths ----
+
+# misclassification modeling output path ----
 ## output from misclassification modeling of CHAMPS data
 champs.output.path = "/Users/sandipanpramanik/mystaff/JHU/research/postdoc/VA/comsa calibration/comsa analysis single/code/10-19-24"
 
@@ -18,8 +19,6 @@ CCVA_missmat = list('neonate' = list('eava' = list('postsamples' = NULL, 'postsu
                                   'interva' = list('postsamples' = NULL, 'postsumm' = NULL, 'postmean' = NULL, 'asDirich' = NULL)))
 for(age_group in c('neonate', 'child')){
 
-
-  ## misclassification estimates ----
   for(va_algo in c('eava', 'insilicova', 'interva')){
     
     # age_group = 'neonate'
@@ -39,10 +38,10 @@ for(age_group in c('neonate', 'child')){
 
     }
     
-    ### posterior samples of misclassification matrix ====
+    ## posterior samples of misclassification matrix ====
     CCVA_missmat[[age_group]][[va_algo]][["postsamples"]] = mismodel_out$Mmat
 
-    ### posterior summary of misclassification matrix ====
+    ## posterior summary of misclassification matrix ====
     # "mean", "min", "2.5%" quantile, "25%" quantile, "50%" quantile, "75%" quantile, "97.5%" quantile, "max"
     CCVA_missmat[[age_group]][[va_algo]][["postsumm"]] =
       lapply(1:length(mismodel_out$Mmat),
@@ -59,10 +58,10 @@ for(age_group in c('neonate', 'child')){
              })
     names(CCVA_missmat[[age_group]][[va_algo]][["postsumm"]]) = names(mismodel_out$Mmat)
 
-    ### separately stored posterior mean ====
+    ## separately stored posterior mean ====
     CCVA_missmat[[age_group]][[va_algo]][["postmean"]] = mismodel_out$Mmat.postmean
 
-    ### diriclet approximation of posterior for each age_group, algorithm, country, and CHAMPS cause ====
+    ## diriclet approximation of posterior for each age_group, algorithm, country, and CHAMPS cause ====
     CCVA_missmat[[age_group]][[va_algo]][["asDirich"]] = mismodel_out$Mmat.asDirich
 
     print(paste0(age_group, ', ', va_algo))
@@ -76,5 +75,7 @@ for(age_group in c('neonate', 'child')){
 # for maintainer's use only
 CCVA_missmat = c(CCVA_missmat, list("version" = "20241004"))
 
+
+# saving ----
 saveRDS(CCVA_missmat, "CCVA_missmat")
 
