@@ -1,6 +1,8 @@
-# Misclassification Estimates Based on CHAMPS Data
+# CCVA Misclassification Matrices
 
-Estimates of misclassification matrices using the modeling framework from [Pramanik et al. (2025)](https://projecteuclid.org/journals/annals-of-applied-statistics/volume-19/issue-2/Modeling-structure-and-country-specific-heterogeneity-in-misclassification-matrices-of/10.1214/24-AOAS2006.full) and the limited paired MITS-VA data from the Child Health and Mortality Prevention Surveillance ([CHAMPS](https://champshealth.org/)) project. These are the same misclassification estimates used in the `vacalibration` R package on CRAN. This repository contains the posterior samples, whereas `Mmat_champs` in `vacalibration` contains the posterior summaries. Posterior means and Dirichlet approximations are identical.
+This is the inventory of misclassification matrix estimates for verbal autopsy based cause of death analysis using EAVA, InSilicoVA, InterVA algorithms. The estimates are derived using the misclassification matrix modeling framework from [Pramanik et al. (2025)](https://projecteuclid.org/journals/annals-of-applied-statistics/volume-19/issue-2/Modeling-structure-and-country-specific-heterogeneity-in-misclassification-matrices-of/10.1214/24-AOAS2006.short) and paired CHAMPS–VA cause-of-death data from the Child Health and Mortality Prevention Surveillance ([CHAMPS](https://champshealth.org/)) project. CHAMPS and VA causes are interpreted as the true and estimated causes.
+
+See below for a description of the inventory. The .rda file can be downloaded from the [release](https://github.com/sandy-pramanik/CCVA-Misclassification-Matrices/releases/tag/20241004).
 
 ## Credit
 
@@ -12,35 +14,42 @@ Future updates of misclassification estimates will be released here.
 
 ## Data Format
 
-A list.
+A nested list.
   * `age_group`: `"neonate"` for 0-27 days, and `"child"` for 1-59 months
-  * `algo`: `"eava"`, `"insilicova"`, and `"interva"`
+  * `va_algo`: `"eava"`, `"insilicova"`, and `"interva"`
   * `estimate types`:
     * `"postsamples"` contains posterior samples,
+    * `"postsumm"` contains posterior summaries,
     * `"postmean"` contains the posterior means, and
-    * `"asDirich"` contains Dirichlet approximations for each CHAMPS cause and country.
-  * `country`: `"Bangladesh"`, `"Ethiopia"`, `"Kenya"`, `"Mali"`, `"Mozambique"`, `"Sierra Leone"`, `"South Africa"`, `"other"`
+    * `"asDirich"` contains Dirichlet approximations for each CHAMPS cause.
+  * `country`: `"Bangladesh"`, `"Ethiopia"`, `"Kenya"`, `"Mali"`, `"Mozambique"`, `"Sierra Leone"`, `"South Africa"`, and `"other"`
   * `version`: Date stamp for version control of tracking updates. Only for maintainers.
 
 ## Details
 
   * Posterior sample:
-    * `Mmat_champs[[age_group]][[algo]][["postsamples"]][[country]]` contains posterior samples of the misclassification matrix for a desired `age_group`, `algo`, and `country.
-    * It is an array of dimension posterior sample `X` CHAMPS broad cause `X` VA broad cause.
+    * `CCVA_missmat[[age_group]][[va_algo]][["postsamples"]][[country]]` contains misclassification matrix samples of the for a desired `age_group`, `va_algo`, and `country`.
+    * It is an array arranged as samples `X` CHAMPS broad cause `X` VA broad cause.
     * For example, if analyzing `"neonate"` age group using `"eava"` algorithm in `"Mozambique"`,
-      * `Mmat_champs$neonate$eava$postsamples$Mozambique[1,"pneumonia","pneumonia"]` is the first posterior sample of sensitivity for `"pneumonia"`,
-      * `Mmat_champs$neonate$eava$postsamples$Mozambique[1,"pneumonia","ipre"]` is the first posterior sample of false negative rate for CHAMPS broad cause `"pneumonia"` and VA broad cause `"ipre"`.
-        
+      * `CCVA_missmat$neonate$eava$postsamples$Mozambique[,"pneumonia","pneumonia"]` are samples of sensitivity for `"pneumonia"`,
+      * `CCVA_missmat$neonate$eava$postsamples$Mozambique[,"pneumonia","ipre"]` are samples of false negative rate for CHAMPS broad cause `"pneumonia"` and VA broad cause `"ipre"`.
+
+  * Posterior summary:
+    * `CCVA_missmat[[age_group]][[va_algo]][["postsumm"]][[country]]` contains posterior summaries of misclassification matrix samples for a desired `age_group`, `va_algo`, and `country`.
+    * This is the summaries of misclassification matrix samples.It is an array arranged as summaries `X` CHAMPS broad cause `X` VA broad cause.
+    * For example, if analyzing `"neonate"` age group using `"eava"` algorithm in `"Mozambique"`,
+      * `CCVA_missmat$neonate$eava$postsamples$Mozambique[,"pneumonia","pneumonia"]` are summaries of sensitivity for `"pneumonia"`,
+      * `CCVA_missmat$neonate$eava$postsamples$Mozambique[,"pneumonia","ipre"]` are summaries of false negative rate for CHAMPS broad cause `"pneumonia"` and VA broad cause `"ipre"`.
+
   * Posterior mean:
-    * `Mmat_champs[[age_group]][[algo]][["postmean"]][[country]]` contains posterior means
-    * This is a matrix of dimension CHAMPS broad cause `X` VA broad cause
+    * `CCVA_missmat[[age_group]][[va_algo]][["postmean"]][[country]]` contains posterior means
+    * This is the average misclassification matrix based on the above samples arranged as CHAMPS broad cause `X` VA broad cause.
     * For example, if analyzing `"neonate"` age group using `"eava"` algorithm in `"Mozambique"`,
-      * `Mmat_champs$neonate$eava$postmean$Mozambique["pneumonia","pneumonia"]` is the posterior mean of sensitivity for `"pneumonia"`
-      * `Mmat_champs$neonate$eava$postmean$Mozambique["pneumonia","ipre"]` is the posterior mean of false negative rate for CHAMPS broad cause `"pneumonia"` and VA broad cause `"ipre"`.
+      * `CCVA_missmat$neonate$eava$postmean$Mozambique["pneumonia","pneumonia"]` is the average sensitivity for `"pneumonia"`
+      * `CCVA_missmat$neonate$eava$postmean$Mozambique["pneumonia","ipre"]` is the average false negative rate for CHAMPS broad cause `"pneumonia"` and VA broad cause `"ipre"`.
         
-  * Dirichlet approximation to use an approximate informative prior:
-    * `Mmat_champs[[age_group]][[algo]][["asDirich"]][[country]]` contains posterior Dirichlet approximations of posterior distributions `Mmat_champs[[age_group]][[algo]][["postsamples"]][[country]]`
-    * This is a matrix of dimension CHAMPS broad cause `X` VA broad cause
-    * For example, if analyzing `"neonate"` age group using `"eava"` algorithm in `"Mozambique"`,
-    * `Mmat_champs$neonate$eava$asDirich$Mozambique["pneumonia",]` are parameters of the Dirichlet distribution approximating the posterior of classification rates of different broad causes for the CHAMPS broad cause "pneumonia" (that is, `Mmat_champs[["neonate"]][["eava"]][["postsamples"]][["Mozambique"]][,"pneumonia",]`).
+  * Dirichlet approximation as an approximate informative prior:
+    * `CCVA_missmat[[age_group]][[va_algo]][["asDirich"]][[country]]` contains Dirichlet approximations of samples for each CHAMPS cause
+    * This is a matrix arranged as CHAMPS broad cause `X` VA broad cause. Each row of `CCVA_missmat[[age_group]][[va_algo]][["asDirich"]][[country]]` acts as an informative Dirichlet prior for the corresponding row of misclassification matrix.
+    * For example, if analyzing `"neonate"` age group using `"eava"` algorithm in `"Mozambique"`, Dirichlet distribution with scale parameters `CCVA_missmat$neonate$eava$asDirich$Mozambique["pneumonia",]` best approximates `CCVA_missmat$neonate$eava$postsamples$Mozambique[,"pneumonia",]`), the samples for CHAMPS broad cause "pneumonia".
 
