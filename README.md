@@ -1,8 +1,8 @@
 # CCVA Misclassification Matrices
 
-This is the inventory of misclassification matrix estimates for verbal autopsy based cause of death analysis using EAVA, InSilicoVA, InterVA algorithms. The estimates are derived using the misclassification matrix modeling framework from [Pramanik et al. (2025)](https://projecteuclid.org/journals/annals-of-applied-statistics/volume-19/issue-2/Modeling-structure-and-country-specific-heterogeneity-in-misclassification-matrices-of/10.1214/24-AOAS2006.short) and paired CHAMPS–VA cause-of-death data from the Child Health and Mortality Prevention Surveillance ([CHAMPS](https://champshealth.org/)) project. CHAMPS and VA causes are interpreted as the true and estimated causes.
+This is the inventory of misclassification matrix estimates of EAVA, InSilicoVA, InterVA algorithms for verbal autopsy (VA)-based cause of death analysis. The estimates are derived using the misclassification matrix modeling framework proposed in [Pramanik et al. (2025)](https://projecteuclid.org/journals/annals-of-applied-statistics/volume-19/issue-2/Modeling-structure-and-country-specific-heterogeneity-in-misclassification-matrices-of/10.1214/24-AOAS2006.short) and limited paired COD data collected using VA and minimally invasive tissue sampling (MITS) in the Child Health and Mortality Prevention Surveillance ([CHAMPS](https://champshealth.org/)) project. For this analysis, CHAMPS and VA COD are interpreted as the true and estimated COD. See [Pramanik et al. (2026)](https://gh.bmj.com/content/11/3/e021747) for more details and analysis.
 
-See below for a description of the inventory. The .rda file can be downloaded from the [release](https://github.com/sandy-pramanik/CCVA-Misclassification-Matrices/releases/tag/20241004).
+Also, see below for a description of the inventory. The .rda file can be downloaded from the [release](https://github.com/sandy-pramanik/CCVA-Misclassification-Matrices/releases/tag/20241004).
 
 ## Credit
 
@@ -22,7 +22,7 @@ A nested list.
     * `"postsumm"` contains posterior summaries,
     * `"postmean"` contains the posterior means, and
     * `"asDirich"` contains Dirichlet approximations for each CHAMPS cause.
-  * `country`: `"Bangladesh"`, `"Ethiopia"`, `"Kenya"`, `"Mali"`, `"Mozambique"`, `"Sierra Leone"`, `"South Africa"`, and `"other"`
+  * `country`: Specific estimates for `"Bangladesh"`, `"Ethiopia"`, `"Kenya"`, `"Mali"`, `"Mozambique"`, `"Sierra Leone"`, and `"South Africa"`. For other countries, a 'pooled estimate' reflecting the heterogeneity is stored as `"other"`.
   * `version`: Date stamp for version control of tracking updates. Only for maintainers.
 
 ## Details
