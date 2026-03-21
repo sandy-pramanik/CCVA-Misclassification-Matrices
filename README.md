@@ -22,7 +22,7 @@ A nested list.
     * `"postsumm"` contains posterior summaries,
     * `"postmean"` contains the posterior means, and
     * `"asDirich"` contains Dirichlet approximations for each CHAMPS cause.
-  * `country`: Specific estimates for `"Bangladesh"`, `"Ethiopia"`, `"Kenya"`, `"Mali"`, `"Mozambique"`, `"Sierra Leone"`, and `"South Africa"`. For other countries, a 'pooled estimate' reflecting the heterogeneity is stored as `"other"`.
+  * `country`: Specific estimates are available for `"Bangladesh"`, `"Ethiopia"`, `"Kenya"`, `"Mali"`, `"Mozambique"`, `"Sierra Leone"`, and `"South Africa"`. For other countries, a 'pooled estimate' reflecting the heterogeneity is stored as `"other"`.
   * `version`: Date stamp for version control of tracking updates. Only for maintainers.
 
 ## Details
