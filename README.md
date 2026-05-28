@@ -1,8 +1,17 @@
 # CCVA Misclassification Matrices
 
-This is the inventory of misclassification matrix estimates of EAVA, InSilicoVA, InterVA algorithms for verbal autopsy (VA)-based cause of death analysis. The estimates are derived using the misclassification matrix modeling framework proposed in [Pramanik et al. (2025)](https://projecteuclid.org/journals/annals-of-applied-statistics/volume-19/issue-2/Modeling-structure-and-country-specific-heterogeneity-in-misclassification-matrices-of/10.1214/24-AOAS2006.short) and limited paired COD data collected using VA and minimally invasive tissue sampling (MITS) in the Child Health and Mortality Prevention Surveillance ([CHAMPS](https://champshealth.org/)) project. For this analysis, CHAMPS and VA COD are interpreted as the true and estimated COD. See [Pramanik et al. (2026)](https://gh.bmj.com/content/11/3/e021747) for more details and analysis.
+[Download](https://github.com/sandy-pramanik/CCVA-Misclassification-Matrices/releases/download/20241004/CCVA_missmat)
 
-Also, see below for a description of the inventory. The .rda file can be downloaded from the [release](https://github.com/sandy-pramanik/CCVA-Misclassification-Matrices/releases/tag/20241004).
+load this in R as
+
+``` r
+path_to_file = ...  # directory path where the file is located
+CCVA_missmat = readRDS(file.path(path_to_file, "CCVA_missmat"))
+```
+
+This is the inventory of misclassification matrix estimates for the EAVA, InSilicoVA, and InterVA algorithms used in cause-of-death analysis via verbal autopsy (VA). The estimates are derived using the misclassification matrix modeling framework proposed in [Pramanik et al. (2025)](https://projecteuclid.org/journals/annals-of-applied-statistics/volume-19/issue-2/Modeling-structure-and-country-specific-heterogeneity-in-misclassification-matrices-of/10.1214/24-AOAS2006.short) and limited paired COD data collected using VA and minimally invasive tissue sampling (MITS) in the Child Health and Mortality Prevention Surveillance ([CHAMPS](https://champshealth.org/)) project. For this analysis, CHAMPS and VA COD are interpreted as the true and estimated COD. See [Pramanik et al. (2026)](https://gh.bmj.com/content/11/3/e021747) for more details and analysis.
+
+See below for a description of the inventory.
 
 ## Credit
 
