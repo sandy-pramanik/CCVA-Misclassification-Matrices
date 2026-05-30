@@ -21,7 +21,10 @@ Maintainer: Sandipan Pramanik ([sandy.pramanik@gmail.com](sandy.pramanik@gmail.c
 
 Future updates of misclassification estimates will be released here.
 
-Acknowledgment: This work was developed with support from the Bill and Melinda Gates Foundation Grants INV-034842, Eunice Kennedy Shriver National Institute Of Child Health & Human Development of the National Institutes of Health under K99 Pathway to Independence Award Number 1K99HD114884-01A1, and 2024 Data Science and AI Institute Demonstration Projects Award.
+Acknowledgment: This work was developed with support from the following:
+  * Bill and Melinda Gates Foundation (INV-034842)
+  * Eunice Kennedy Shriver National Institute of Child Health K99 NIH Pathway to Independence Award (1K99HD114884-01A1)
+  * 2024 Data Science and AI Institute Demonstration Projects Award.
 
 ## Data Format
 
